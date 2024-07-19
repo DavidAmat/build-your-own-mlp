@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: training-pod
+  namespace: argo
+spec:
+  containers:
+  - name: training-container
+    image: davidamat/image-reg:latest  # Replace with your Docker image name
+    command: ["/entrypoint", "train"]
+    resources:
+      limits:
+        memory: "5Gi"  # Adjust memory limit as needed
+        cpu: "2"       # Adjust CPU limit as needed
+  restartPolicy: Never

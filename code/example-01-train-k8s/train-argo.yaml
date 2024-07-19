@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow # new type of k8s spec used to create argo workflows
+metadata:
+  generateName: training- # name of the workflow spec
+spec:
+  entrypoint: training-template # specifies the initial template that should be invoked i.e whalesay
+  templates:
+    - name: training-template # name of the template
+      container: # container that will run when this template in invoked
+        image: davidamat/image-reg:latest # image that will run inside the cluster
+        command: ["/entrypoint", "train"]
+        resources: # limit the resources
+          limits:
+            memory: "5Gi"
+            cpu: "2"

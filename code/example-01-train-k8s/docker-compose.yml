@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  reg:
+    build: .
+    image: image-reg:latest
+    volumes:
+      - .:/app
+    command: ""

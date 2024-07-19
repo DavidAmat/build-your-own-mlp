@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+cmd=$1
+
+case "$cmd" in
+"train")
+    echo "Training..."
+    python /app/train.py
+;;
+esac

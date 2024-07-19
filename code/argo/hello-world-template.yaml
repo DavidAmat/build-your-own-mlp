@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate # specify this as a WorkflowTemplate
+metadata:
+  name: hello-world-template # name of the workflow template
+  namespace: n1
+  annotations:
+    submit-from-ui: "true"
+spec:
+  entrypoint: whalesay # specifies the initial template that should be invoked
+  templates:
+    - name: whalesay # name of the template
+      container: # container that will run when this template is invoked
+        image: docker/whalesay # image that will run inside the cluster
+        command: [cowsay]
+        args: ["hello world"]
+        resources: # limit the resources
+          limits:
+            memory: 32Mi
+            cpu: 100m

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-server
+  namespace: argo
+spec:
+  template:
+    spec:
+      containers:
+        - name: argo-server
+          image: argoproj/argocli:latest
+          args:
+            - server
+            - --tls-cert-file=/etc/tls/cert.pem
+            - --tls-key-file=/etc/tls/key.pem
+          volumeMounts:
+            - name: argo-server-tls
+              mountPath: /etc/tls
+              readOnly: true
+      volumes:
+        - name: argo-server-tls
+          secret:
+            secretName: argo-server-tls

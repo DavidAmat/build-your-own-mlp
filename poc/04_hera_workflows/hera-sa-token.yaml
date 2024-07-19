@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hera-service-account-token
+  namespace: argo
+  annotations:
+    kubernetes.io/service-account.name: hera-service-account
+type: kubernetes.io/service-account-token
